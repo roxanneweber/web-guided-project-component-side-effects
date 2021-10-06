@@ -14,6 +14,18 @@ export default function Details(props) {
   // 👉 TASK 5 - Create a side effect 👻 that runs only after first render
   // and puts a 'click' event handler on document.
   // See what happens if we don't clean up.
+  useEffect(() => {
+    console.log("Help me clean up the mess I've created!!")
+    const sillyEffect = () => {
+      console.log("Mess mess mess mess...");
+    }
+    document.addEventListener('click', sillyEffect);
+
+    return () => {
+      console.log("Cleanup in progress...");
+      document.removeEventListener('click', sillyEffect);
+    }
+  }, [])
 
   // 👉 TASK 6 - Create a side effect 🥵 that runs after every render.
   useEffect(() => {
