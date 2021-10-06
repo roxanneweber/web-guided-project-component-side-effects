@@ -7,12 +7,18 @@ export default function Details(props) {
   const [details, setDetails] = useState(null)
 
   // 👉 TASK 4 - Create a side effect 🥇 that runs only after first render.
+  useEffect(() => {
+    console.log("I run ONLY after the first render!!!");
+  }, [])
 
   // 👉 TASK 5 - Create a side effect 👻 that runs only after first render
   // and puts a 'click' event handler on document.
   // See what happens if we don't clean up.
 
   // 👉 TASK 6 - Create a side effect 🥵 that runs after every render.
+  useEffect(() => {
+    console.log("I'm running TOO MUCH!!!!");
+  })
 
   // 👉 TASK 7 - Create a side effect 📲 that runs when a particular variable changes:
   // Whenever props.friendId updates we should trigger a fetch for details of the friend.
@@ -22,7 +28,7 @@ export default function Details(props) {
   useEffect(() => {
     axios.get(`${BASE_URL}/friends/${friendId}?api_key=${API_KEY}`)
       .then(res => {
-        console.log(res);
+        setDetails(res.data);
       }).catch(err => {
         console.error(err);
       })
